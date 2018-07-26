@@ -1,6 +1,8 @@
 # AnyControl
 
-AnyControl is a small library for adding speech commands to your website. It is build on top of Webkit Speech API.
+AnyControl is a small JavaScript SpeechRecognition library that lets your users control your site with voice commands. It is build on top of Webkit Speech API.
+
+AnyControl has no dependencies, just 3 KB small, and is free to use and modify under the MIT license.
 
 [![NPM](https://nodei.co/npm/anycontrol.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/anycontrol/)
 
@@ -20,17 +22,17 @@ Google Chrome 31+
 ```html
 <script src="https://unpkg.com/anycontrol/dist/index.umd.min.js"></script>
 <script>
-    var ctrl = new anycontrol()
+  var ctrl = new anycontrol()
 
-    ctrl.addCommand("previous page", function() {
-      console.log('Go to previous page')
-    });
+  ctrl.addCommand("previous page", function() {
+    console.log('Go to previous page')
+  });
 
-    ctrl.addCommand("next page", function () {
-      console.log('Go to next page')
-    });
+  ctrl.addCommand("next page", function () {
+    console.log('Go to next page')
+  });
 
-    ctrl.start();
+  ctrl.start();
 </script>
 ```
 

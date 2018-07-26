@@ -1,0 +1,6 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "no-extend-native": [2, {"exceptions": ["String"]}]
+  }
+}

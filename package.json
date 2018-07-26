@@ -1,0 +1,102 @@
+{
+  "name": "anycontrol",
+  "version": "0.1.4",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepush": "npm run validate",
+    "commitmsg": "validate-commit-msg",
+    "precommit": "npm run validate",
+    "commit-m": "git-cz",
+    "prebuild": "rimraf dist",
+    "build": "npm-run-all --parallel build:*",
+    "build:main": "babel --copy-files --out-dir dist --ignore *.test.js src",
+    "build:umd": "webpack --output-filename index.umd.js",
+    "build:umd.min": "webpack --output-filename index.umd.min.js -p",
+    "lint": "eslint src",
+    "test": "cross-env NODE_ENV=test nyc mocha",
+    "watch:test": "mocha --watch",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
+    "validate": "npm-run-all --parallel lint test build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "env": [
+    "mocha"
+  ],
+  "files": [
+    "dist"
+  ],
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-plugin-istanbul": "4.1.4",
+    "babel-preset-env": "1.6.0",
+    "babel-register": "6.26.0",
+    "chai": "4.1.1",
+    "codecov": "2.3.0",
+    "commitizen": "2.9.6",
+    "cross-env": "5.0.5",
+    "cz-conventional-changelog": "2.0.0",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb-base": "11.3.2",
+    "eslint-plugin-import": "2.7.0",
+    "husky": "0.14.3",
+    "json-loader": "0.5.7",
+    "mocha": "3.5.0",
+    "npm-run-all": "4.1.1",
+    "nyc": "11.1.0",
+    "rimraf": "2.6.1",
+    "semantic-release": "^7.0.2",
+    "validate-commit-msg": "2.14.0",
+    "webpack": "3.5.5"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "branches": 100,
+    "functions": 100,
+    "lines": 100,
+    "statements": 100,
+    "reporter": [
+      "text",
+      "lcov",
+      "text-summary"
+    ],
+    "instrument": false,
+    "sourceMap": false,
+    "require": [
+      "babel-register"
+    ],
+    "include": [
+      "src"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KaiWedekind/anycontrol.git"
+  },
+  "author": "Kai Wedekind <wedekind.kai@googlemail.com> (https://www.kaiwedekind.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KaiWedekind/anycontrol/issues"
+  },
+  "homepage": "https://github.com/KaiWedekind/anycontrol#readme"
+}

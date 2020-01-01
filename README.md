@@ -55,8 +55,8 @@ ctrl.addCommand("send a message to ${USER} saying ${THIS_TEXT} and send it at ${
   console.log('Result', ctx)
   /* 
     { 
-      USER: "my girl",
-      transcript: "hello siri send a message to my girl saying hi there and send it at 2 p.m.",
+      USER: "michael",
+      transcript: "hello siri send a message to michael saying hi there and send it at 2 p.m.",
       THIS_TEXT: "hi there",
       SPECIFIED_TIME: "2 p.m."
     }

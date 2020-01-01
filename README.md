@@ -67,9 +67,9 @@ ctrl.addCommand("${MY_ASSISTANT} what ${OBJECT} is it", function (ctx) {
   console.log('Result', ctx)
   /*
     {
-      MY_ASSISTANT: "siri",
+      MY_ASSISTANT: "alexa",
       OBJECT: "day",
-      transcript: "siri what day is it"
+      transcript: "alexa what day is it"
     }
   */
 });

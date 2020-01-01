@@ -50,6 +50,7 @@ ctrl.addCommand("search", function(param) {
 ```
 
 **Add command with keyword support**
+
 ```javascript
 ctrl.addCommand("send a message to ${USER} saying ${THIS_TEXT} and send it at ${SPECIFIED_TIME}", function (ctx) {
   console.log('Result', ctx)

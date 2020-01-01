@@ -49,6 +49,32 @@ ctrl.addCommand("search", function(param) {
 });
 ```
 
+**Add command with keyword support**
+```javascript
+ctrl.addCommand("send a message to ${USER} saying ${THIS_TEXT} and send it at ${SPECIFIED_TIME}", function (ctx) {
+  console.log('Result', ctx)
+  /* 
+    { 
+      USER: "my girl",
+      transcript: "hello siri send a message to my girl saying hi there and send it at 2 p.m.",
+      THIS_TEXT: "hi there",
+      SPECIFIED_TIME: "2 p.m."
+    }
+  */
+});
+
+ctrl.addCommand("${MY_ASSISTANT} what ${OBJECT} is it", function (ctx) {
+  console.log('Result', ctx)
+  /*
+    {
+      MY_ASSISTANT: "siri",
+      OBJECT: "day",
+      transcript: "siri what day is it"
+    }
+  */
+});
+```
+
 **Remove command**
 ```javascript
 ctrl.removeCommand("search");

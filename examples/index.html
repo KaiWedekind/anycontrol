@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AnyControl</title>
+</head>
+<body>
+    <h1>AnyControl</h1>
+    <h2>Examples</h2>
+    <ul>
+        <li>
+            <p>
+                Alexa, can you go to the next page
+            </p>
+        </li>
+        <li>
+            <p>
+                Now go back to the previous page
+            </p>
+        </li>
+        <li>
+            <p>
+                Hello Siri, send a message to Michael saying 'Hi there!' and send it at 2 p.m.
+            </p>
+        </li>
+        <li>
+            <p>
+                Alexa, what day is it?
+            </p>
+        </li>
+        <li>
+            <p>
+                Alexa, what is 13 times 3?
+            </p>
+        </li>
+        <li>
+            <p>
+                Siri, who is the president of America?
+            </p>
+        </li>
+        <li>
+            <p>
+                Siri, who is the president of Argentina?
+            </p>
+        </li>
+        <li>
+            <p>
+                Siri, who is the president of China?
+            </p>
+        </li>
+    </ul>
+    <script src="https://unpkg.com/anycontrol/dist/index.umd.min.js"></script>
+
+    <script>
+    var ctrl = new anycontrol()
+
+    // ctrl.debug(true);
+
+    ctrl.addCommand("previous page", function() {
+        alert('Switching to previous page');
+    });
+
+    ctrl.addCommand("next page", function () {
+        alert('Switching to next page');
+    });
+
+    ctrl.addCommand("send a message to ${USER} saying ${THIS_TEXT} and send it at ${SPECIFIED_TIME}", function (ctx) {
+        alert(`Sending a message to ${ctx.USER} saying "${ctx.THIS_TEXT}" at ${ctx.SPECIFIED_TIME}`);
+    });
+
+    ctrl.addCommand("${MY_ASSISTANT} what ${OBJECT} is it", function (ctx) {
+        alert(JSON.stringify(ctx, null, 2))
+    });
+
+    /* Variations */
+
+    function calculateSum (ctx) {
+        alert(`The result of ${ctx.VALUE_1} times ${ctx.VALUE_2} equals ${ctx.VALUE_1 * ctx.VALUE_2}`)
+    }
+
+    ctrl.addCommand("${MY_ASSISTANT} what is ${VALUE_1} x ${VALUE_2}", calculateSum);
+    ctrl.addCommand("${MY_ASSISTANT} what's ${VALUE_1} x ${VALUE_2}", calculateSum);
+
+    function presidentLookup (country) {
+        switch (country) {
+            case 'argentina': {
+                return 'Alberto Fernández'
+            }
+            case 'angola': {
+                return 'João Lourenço'
+            }
+            case 'brazil': {
+                return 'Jair Bolsonaro'
+            }
+            case 'china': {
+                return 'Xi Jinping'
+            }
+            case 'america': {
+                return 'Donald Trump'
+            }
+        }
+    }
+
+    function checkPresidentOfCountry(ctx) {
+        const president = presidentLookup(ctx.COUNTRY);
+        alert(`The president of ${ctx.COUNTRY} is ${president}.`);
+    }
+
+    ctrl.addCommand("Who's the president of ${COUNTRY}", checkPresidentOfCountry);
+    ctrl.addCommand("Who is the president of ${COUNTRY}", checkPresidentOfCountry);
+
+    // Alexa, who is the president of America
+
+    ctrl.start();
+    </script>
+</body>
+</html>

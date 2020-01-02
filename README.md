@@ -2,7 +2,7 @@
 
 AnyControl is a small JavaScript SpeechRecognition library that lets your users control your site with voice commands. It is build on top of Webkit Speech API.
 
-AnyControl has no dependencies, just 3 KB small, and is free to use and modify under the MIT license.
+AnyControl has no dependencies, just 5 KB small, and is free to use and modify under the MIT license.
 
 [![NPM](https://nodei.co/npm/anycontrol.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/anycontrol/)
 

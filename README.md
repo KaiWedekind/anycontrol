@@ -74,6 +74,43 @@ ctrl.addCommand("${MY_ASSISTANT} what ${OBJECT} is it", function (ctx) {
     }
   */
 });
+
+/* Variations */
+
+function calculateSum (ctx) {
+    alert(`The result of ${ctx.VALUE_1} times ${ctx.VALUE_2} equals ${ctx.VALUE_1 * ctx.VALUE_2}`)
+}
+
+ctrl.addCommand("${MY_ASSISTANT} what is ${VALUE_1} x ${VALUE_2}", calculateSum);
+ctrl.addCommand("${MY_ASSISTANT} what's ${VALUE_1} x ${VALUE_2}", calculateSum);
+
+function presidentLookup (country) {
+    switch (country) {
+        case 'argentina': {
+            return 'Alberto Fernández'
+        }
+        case 'angola': {
+            return 'João Lourenço'
+        }
+        case 'brazil': {
+            return 'Jair Bolsonaro'
+        }
+        case 'china': {
+            return 'Xi Jinping'
+        }
+        case 'america': {
+            return 'Donald Trump'
+        }
+    }
+}
+
+function checkPresidentOfCountry(ctx) {
+    const president = presidentLookup(ctx.COUNTRY);
+    alert(`The president of ${ctx.COUNTRY} is ${president}.`);
+}
+
+ctrl.addCommand("Who's the president of ${COUNTRY}", checkPresidentOfCountry);
+ctrl.addCommand("Who is the president of ${COUNTRY}", checkPresidentOfCountry);
 ```
 
 **Remove command**

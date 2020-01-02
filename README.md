@@ -10,8 +10,8 @@ AnyControl has no dependencies, just 5 KB small, and is free to use and modify u
 [![Forks](https://img.shields.io/github/forks/KaiWedekind/anycontrol.svg)](https://github.com/KaiWedekind/anycontrol/network)
 [![Stars](https://img.shields.io/github/stars/KaiWedekind/anycontrol.svg)](https://github.com/KaiWedekind/anycontrol/stargazers)
 [![License](https://img.shields.io/github/license/KaiWedekind/anycontrol.svg)](https://raw.githubusercontent.com/KaiWedekind/anycontrol/master/LICENSE)
-[![Package](https://img.shields.io/badge/npm-5.0.3-blue.svg)](package)
-[![CodeOfConduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg)]()
+[![Package](https://img.shields.io/badge/npm-5.0.3-blue.svg)](https://github.com/KaiWedekind/anycontrol/blob/master/package.json)
+[![CodeOfConduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg)](https://github.com/KaiWedekind/anycontrol/blob/master/CodeOfConduct.md)
 
 ## Browser support
 

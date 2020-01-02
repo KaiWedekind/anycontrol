@@ -1,13 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AnyControl</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v2">
+  <title>AnyControl</title>
+  <style>
+    :root {
+      --background--primary: #eee;
+      --background--secondary: #121212;
+    }
+
+    html, body {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      display: block;
+      background-color: var(--background--primary);
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+      overflow-y: auto;    
+    }
+
+    #header {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 4rem;
+      color: #f4f4f4;
+      background: var(--background--secondary);
+      border-bottom-right-radius: 200px;
+    }
+
+    #header__meta {
+      display: flex;
+    }
+
+    #header__info {
+      display: flex;
+      flex: 1;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #header__info li {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.5rem 2rem;
+    }
+
+    #header__info li span {
+      white-space: nowrap;
+    }
+
+    #header__info label {
+      color: #888;
+      line-height: 1.6rem;
+    }
+
+    #header__title {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+
+    #header__image {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 65px;
+      width: 65px;
+    }
+
+    #header__image img {
+      position: inherit;
+      height: 60px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    #header__image::after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: calc(100% + 4px);
+      width: calc(100% + 4px);
+      border-radius: 100%;
+      border: 2px solid #bbb;
+      transform: translate(-50%, -50%);
+    }
+
+    #header__image:hover::after {
+      border-style: dashed;
+      animation: stroke-draw 6s linear infinite;
+    }
+
+    #header__description {
+      max-width: 800px;
+      padding: 0 4rem 0 0;
+      line-height: 1.6rem;
+      color: #ccc;
+    }
+
+    #header__tags {
+      padding: 3rem 0 0.5rem 0;
+    }
+
+    #header__tags a {
+      margin: 0.125rem;
+    }
+
+    .tags {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 0.25rem 0.5rem;
+      background-color: #ddd;
+      color: #121212;
+      margin: 0.125rem;
+      white-space: nowrap;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: normal;
+    }
+
+    #main {
+      padding: 2rem 4rem;
+    }
+
+    .main__title {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+
+    .code {
+      display: flex;
+      padding: 1rem 2rem;
+      background-color: #ddd;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .mt-2 {
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 560px) {
+      #header__title {
+        text-align: center;
+      }
+
+      #header__image {
+        align-self: center;
+      }
+
+      #header__meta {
+        flex-direction: column;
+      }
+
+      #header__info {
+        padding: 2rem 0;
+        flex-wrap: wrap;
+      }
+
+      #header__tags {
+        padding: 0 0 0.5rem 0;
+        text-align: center;
+      }
+
+      #header__description {
+        padding: 0;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 800px) {
+      #header {
+        border-bottom-right-radius: 100px;
+        padding: 2rem 1rem;
+      }
+
+      #main {
+        padding: 2rem 1rem;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      #header {
+        padding: 4rem 2rem;
+      }
+
+      #main {
+        padding: 2rem;
+      }
+    }
+
+    @-moz-keyframes stroke-draw {
+      from { -moz-transform: translate(-50%, -50%) rotate(0deg); }
+      to { -moz-transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    @-webkit-keyframes stroke-draw {
+      from { -webkit-transform: translate(-50%, -50%) rotate(0deg); }
+      to { -webkit-transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    @keyframes stroke-draw {
+      from {transform:translate(-50%, -50%) rotate(0deg);}
+      to {transform: translate(-50%, -50%) rotate(360deg);}
+    }
+  </style>
 </head>
 <body>
-    <h1>AnyControl</h1>
-    <h2>Examples</h2>
+  <header id="header">
+    <h1 id="header__title">AnyControl</h1>
+    <section id="header__meta">
+      <section id="header__image" title="Kai Wedekind">
+        <img  src="author.jpg" alt="Image of the author Kai Wedekind">
+      </section>
+      <ul id="header__info">
+        <li>
+          <label>Author</label>
+          <span>Kai Wedekind</span>
+        </li>
+        <li>
+          <label>Published</label>
+          <span>26 Jul 2018</span>
+        </li>
+        <li>
+          <label>Updated</label>
+          <span>02 Jan 2020</span>
+        </li>
+      </ul>
+    </section>
+    <section id="header__tags">
+      <a href="https://github.com/KaiWedekind/anycontrol/issues"><img src="https://camo.githubusercontent.com/3dced8c171e81a2d49d2752fd41aab4a7d011640/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6973737565732f4b6169576564656b696e642f616e79636f6e74726f6c2e737667" alt="Issues" data-canonical-src="https://img.shields.io/github/issues/KaiWedekind/anycontrol.svg" style="max-width:100%;"></a>
+      <a href="https://github.com/KaiWedekind/anycontrol/network"><img src="https://camo.githubusercontent.com/0419ec293270ffa79617382db8905664ec11c015/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f666f726b732f4b6169576564656b696e642f616e79636f6e74726f6c2e737667" alt="Forks" data-canonical-src="https://img.shields.io/github/forks/KaiWedekind/anycontrol.svg" style="max-width:100%;"></a>
+      <a href="https://github.com/KaiWedekind/anycontrol/stargazers"><img src="https://camo.githubusercontent.com/197ee90357e85d8aa181121a1cc87ae49d573645/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f4b6169576564656b696e642f616e79636f6e74726f6c2e737667" alt="Stars" data-canonical-src="https://img.shields.io/github/stars/KaiWedekind/anycontrol.svg" style="max-width:100%;"></a>
+      <a href="https://raw.githubusercontent.com/KaiWedekind/anycontrol/master/LICENSE" rel="nofollow"><img src="https://camo.githubusercontent.com/341f42115d4f48778f885ac99a0436211cb1849c/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f4b6169576564656b696e642f616e79636f6e74726f6c2e737667" alt="License" data-canonical-src="https://img.shields.io/github/license/KaiWedekind/anycontrol.svg" style="max-width:100%;"></a>
+      <a href="https://github.com/KaiWedekind/anycontrol/blob/master/package.json"><img src="https://camo.githubusercontent.com/3c35514077225e02ecc574e6f3ea94b9072fb2b2/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6e706d2d352e302e332d626c75652e737667" alt="Package" data-canonical-src="https://img.shields.io/badge/npm-5.0.3-blue.svg" style="max-width:100%;"></a>
+      <a href="https://github.com/KaiWedekind/anycontrol/blob/master/CodeOfConduct.md"><img src="https://camo.githubusercontent.com/b52064f074723b2d8a00d508344dfa0f006e5291/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64652532306f662d636f6e647563742d6666363962342e737667" alt="CodeOfConduct" data-canonical-src="https://img.shields.io/badge/code%20of-conduct-ff69b4.svg" style="max-width:100%;"></a>
+    </section>
+    <section id="header__description">
+      <p>
+        AnyControl is a small JavaScript SpeechRecognition library that lets your users control your site with voice commands. It is build on top of Webkit Speech API.
+      </p>
+      <p>AnyControl has no dependencies, just 5 KB small, and is free to use and modify under the MIT license.</p>
+      <p>
+        <ul class="tags">
+          <li class="tag">voice</li>
+          <li class="tag">voice-assistant</li>
+          <li class="tag">voice-control</li>
+          <li class="tag">speech-to-text</li>
+          <li class="tag">speech-recognition</li>
+          <li class="tag">speech-api</li>
+          <li class="tag">google-chrome</li>
+        </ul>
+      </p>
+    </section>
+  </header>
+  <main id="main">
+    <h2 class="main__title">Setup</h2>
+    <p>Add script to your site</p>
+    <pre class="code">
+      <code>&lt;script src="https://unpkg.com/anycontrol/dist/index.umd.min.js"&gt;&lt;/script&gt;</code>
+    </pre>
+
+    <h2 class="main__title mt-2">Examples</h2>
+    <ul>
+      <li>
+          <p>
+              Alexa, can you go to the next page
+          </p>
+      </li>
+      <li>
+          <p>
+              Now go back to the previous page
+          </p>
+      </li>
+      <li>
+          <p>
+              Hello Siri, send a message to Michael saying 'Hi there!' and send it at 2 p.m.
+          </p>
+      </li>
+      <li>
+          <p>
+              Alexa, what day is it?
+          </p>
+      </li>
+      <li>
+          <p>
+              Alexa, what is 13 times 3?
+          </p>
+      </li>
+      <li>
+          <p>
+              Siri, who is the president of America?
+          </p>
+      </li>
+      <li>
+          <p>
+              Siri, who is the president of Argentina?
+          </p>
+      </li>
+      <li>
+          <p>
+              Siri, who is the president of China?
+          </p>
+      </li>
+      </ul>
+  </main>
 </body>
 </html>

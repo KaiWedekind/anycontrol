@@ -20,7 +20,7 @@ Google Chrome 31+
 ## Getting started
 
 ```html
-<script src="https://unpkg.com/anycontrol/dist/index.umd.min.js"></script>
+<script src="https://unpkg.com/anycontrol@0.2.1/dist/index.umd.min.js"></script>
 <script>
   var ctrl = new anycontrol()
 

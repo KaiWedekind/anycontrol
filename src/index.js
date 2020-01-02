@@ -48,12 +48,14 @@ const AnyControl = function AnyControl() {
               if (this.DEBUG) {
                 console.info('calling command', command, 'with param:', param);
               }
+            } else {
+              this.commands[command]();
             }
           }
         } else {
           if (this.commands[command].fragments && typeof this.commands[command].callback === 'function') {
-            const snippets = this.commands[command].snippets;
-            const keywords = this.commands[command].keywords;
+            const snippets = JSON.parse(JSON.stringify(this.commands[command].snippets));
+            const keywords = JSON.parse(JSON.stringify(this.commands[command].keywords));
             const startsWidthKeyword = this.commands[command].startsWidthKeyword;
             const finalTranscript = this.finalTranscript;
             let includes = true;
@@ -72,10 +74,10 @@ const AnyControl = function AnyControl() {
             if (includes) {
               if (startsWidthKeyword) {
                 transcriptFromTo = finalTranscript
-                  .substring(finalTranscript.indexOf(snippets[0]));
+                  .substring(finalTranscript.indexOf(snippets[0].toLowerCase()));
                 const keyword = keywords[0];
                 const keywordValue = finalTranscript
-                  .substring(0, finalTranscript.indexOf(snippets[0]));
+                  .substring(0, finalTranscript.indexOf(snippets[0].toLowerCase()));
 
                 if (keyword && keywordValue) {
                   context[keyword.replace('${', '').replace('}', '').trim()] = keywordValue.trim();
@@ -84,7 +86,7 @@ const AnyControl = function AnyControl() {
                 keywords.splice(0, 1);
               } else {
                 transcriptFromTo = finalTranscript
-                  .substring(finalTranscript.indexOf(snippets[0]));
+                  .substring(finalTranscript.indexOf(snippets[0].toLowerCase()));
               }
 
               let transcript = transcriptFromTo;
@@ -92,7 +94,7 @@ const AnyControl = function AnyControl() {
                 const snippet = snippets[i].trim();
                 const keyword = keywords[i];
                 transcript = transcript.trim();
-                transcript = transcript.replace(new RegExp(`^${snippet}`, 'gm'), '');
+                transcript = transcript.replace(new RegExp(`^${snippet.toLowerCase()}`, 'gm'), '');
                 let keywordValue;
                 if (i + 1 < snippets.length) {
                   keywordValue = transcript
@@ -182,11 +184,21 @@ AnyControl.prototype.addCommand = function addCommand(command, callback) {
 
     for (let i = 0; i < keywords.length; i += 1) {
       if (startsWidthKeyword) {
-        fragments.push(keywords[i].trim());
-        fragments.push(snippets[i].trim().toLowerCase());
+        if (keywords[i]) {
+          fragments.push(keywords[i].trim());
+        }
+
+        if (snippets[i]) {
+          fragments.push(snippets[i].trim().toLowerCase());
+        }
       } else {
-        fragments.push(snippets[i].trim().toLowerCase());
-        fragments.push(keywords[i].trim());
+        if (snippets[i]) {
+          fragments.push(snippets[i].trim().toLowerCase());
+        }
+
+        if (keywords[i]) {
+          fragments.push(keywords[i].trim());
+        }
       }
     }
 

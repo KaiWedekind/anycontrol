@@ -3,6 +3,7 @@ const path = require('path');
 const context = path.resolve(__dirname, 'src');
 
 module.exports = {
+  mode: 'production',
   context,
   entry: './index',
   output: {
@@ -12,7 +13,7 @@ module.exports = {
     filename: 'index.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loader: 'babel-loader',

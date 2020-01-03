@@ -32,7 +32,7 @@
     "babel-cli/**/braces": "3.0.2",
     "codecov/**/hoek": "5.0.3",
     "webpack/**/mem": "4.0.0",
-    "hawk/**/cryptiles": "4.1.2"
+    "hawk/cryptiles": "4.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

@@ -17,6 +17,10 @@ AnyControl has no dependencies, just 5 KB small, and is free to use and modify u
 
 Google Chrome 31+
 
+## Live Demo + Documentation
+
+[Link](https://kaiwedekind.github.io/anycontrol)
+
 ## Getting started
 
 ```html

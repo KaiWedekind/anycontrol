@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v2">
+  <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico?v2">
   <title>AnyControl</title>
   <style>
     :root {
@@ -135,8 +135,23 @@
       line-height: normal;
     }
 
-    #main {
+    #main,
+    #footer {
       padding: 2rem 4rem;
+    }
+
+    #footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #footer > a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem;
+      color: #000;
     }
 
     .main__title {
@@ -145,12 +160,51 @@
       font-weight: 600;
     }
 
+    .main__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main__list li {
+      position: relative;
+      padding-bottom: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .main__list li::after {
+      position: absolute;
+      content: '';
+      left: 50%;
+      bottom: 0;
+      width: 90%;
+      transform: translate(-50%);
+      border-top: 1px dashed #000;
+    }
+
+    .main__list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .main__code {
+      display: flex;
+    }
+
+    .main__command {
+      text-align: center;
+    }
+
     .code {
       display: flex;
       padding: 1rem 2rem;
       background-color: #ddd;
       border-radius: 0.5rem;
       font-size: 1rem;
+      overflow-x: auto;
+    }
+
+    .code code {
+      white-space: pre-wrap;
     }
 
     .mt-2 {
@@ -184,6 +238,10 @@
         padding: 0;
         text-align: center;
       }
+
+      .tags {
+        justify-content: center;
+      }
     }
 
     @media (max-width: 800px) {
@@ -192,7 +250,8 @@
         padding: 2rem 1rem;
       }
 
-      #main {
+      #main,
+      #footer {
         padding: 2rem 1rem;
       }
     }
@@ -202,7 +261,8 @@
         padding: 4rem 2rem;
       }
 
-      #main {
+      #main,
+      #footer {
         padding: 2rem;
       }
     }
@@ -271,54 +331,187 @@
   </header>
   <main id="main">
     <h2 class="main__title">Setup</h2>
-    <p>Add script to your site</p>
-    <pre class="code">
-      <code>&lt;script src="https://unpkg.com/anycontrol/dist/index.umd.min.js"&gt;&lt;/script&gt;</code>
-    </pre>
+    <h3>Add script to your site</h3>
+    <section class="main__code">
+      <iframe
+        src="https://carbon.now.sh/embed?bg=rgba(255%2C255%2C255%2C1)&t=dracula&wt=none&l=htmlmixed&ds=true&dsyoff=0px&dsblur=0px&wc=true&wa=false&pv=0px&ph=0px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=%253Cscript%2520src%253D%2522https%253A%252F%252Funpkg.com%252Fanycontrol%252Fdist%252Findex.umd.min.js%2522%253E%253C%252Fscript%253E"
+        style="width:1024px; height:100px; border:0; overflow:hidden;"
+        sandbox="allow-scripts allow-same-origin">
+      </iframe>
+    </section>
 
     <h2 class="main__title mt-2">Examples</h2>
-    <ul>
+    <ul class="main__list">
       <li>
-          <p>
-              Alexa, can you go to the next page
-          </p>
+        <h3>Code</h3>
+        <section class="main__code">
+          <iframe
+            src="https://carbon.now.sh/embed?bg=rgba(255%2C255%2C255%2C1)&t=dracula&wt=none&l=htmlmixed&ds=true&dsyoff=0px&dsblur=0px&wc=true&wa=false&pv=0px&ph=0px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=%253Cscript%253E%250A%2520%2520const%2520ctrl%2520%253D%2520new%2520anycontrol()%253B%250A%250A%2520%2520ctrl.addCommand(%2522next%2520page%2522%252C%2520function%2520()%2520%257B%250A%2520%2520%2520%2520alert('Switching%2520to%2520next%2520page')%253B%250A%2520%2520%257D)%253B%250A%2520%2520%250A%2520%2520ctrl.start()%253B%250A%253C%252Fscript%253E"
+            style="width:1024px; height:250px; border:0; overflow:hidden;"
+            sandbox="allow-scripts allow-same-origin">
+          </iframe>
+        </section>
+        <h3>Command</h3>
+        <p class="main__command">
+          Alexa, can you go to the next page
+        </p>
       </li>
       <li>
-          <p>
-              Now go back to the previous page
-          </p>
+        <h3>Code</h3>
+        <section class="main__code">
+          <iframe
+            src="https://carbon.now.sh/embed?bg=rgba(255%2C255%2C255%2C1)&t=dracula&wt=none&l=htmlmixed&ds=true&dsyoff=0px&dsblur=0px&wc=true&wa=false&pv=0px&ph=0px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=%253Cscript%253E%250A%2520%2520const%2520ctrl%2520%253D%2520new%2520anycontrol()%253B%250A%250A%2520%2520ctrl.addCommand(%2522previous%2520page%2522%252C%2520function()%2520%257B%250A%2520%2520%2520%2520alert('Switching%2520to%2520previous%2520page')%253B%250A%2520%2520%257D)%253B%250A%2520%2520%250A%2520%2520ctrl.start()%253B%250A%253C%252Fscript%253E"
+            style="width:1024px; height:250px; border:0; overflow:hidden;"
+            sandbox="allow-scripts allow-same-origin">
+          </iframe>
+        </section>
+        <h3>Command</h3>
+        <p class="main__command">
+          Now go back to the previous page
+        </p>
       </li>
       <li>
-          <p>
-              Hello Siri, send a message to Michael saying 'Hi there!' and send it at 2 p.m.
-          </p>
+        <h3>Code</h3>
+        <section class="main__code">
+          <iframe
+            src="https://carbon.now.sh/embed?bg=rgba(255%2C255%2C255%2C1)&t=dracula&wt=none&l=htmlmixed&ds=true&dsyoff=0px&dsblur=0px&wc=true&wa=false&pv=0px&ph=0px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=%253Cscript%253E%250A%2520%2520const%2520ctrl%2520%253D%2520new%2520anycontrol()%253B%250A%250A%2520%2520ctrl.addCommand(%2522send%2520a%2520message%2520to%2520%2524%257BUSER%257D%2520saying%2520%2524%257BTHIS_TEXT%257D%2520and%2520send%2520it%2520at%2520%2524%257BSPECIFIED_TIME%257D%2522%252C%2520function%2520(ctx)%2520%257B%250A%2520%2520%2520%2520alert(%2560Sending%2520a%2520message%2520to%2520%2524%257Bctx.USER%257D%2520saying%2520%2522%2524%257Bctx.THIS_TEXT%257D%2522%2520at%2520%2524%257Bctx.SPECIFIED_TIME%257D%2560)%253B%250A%2520%2520%257D)%253B%250A%2520%2520%250A%2520%2520ctrl.start()%253B%250A%253C%252Fscript%253E"
+            style="width:1024px; height:250px; border:0; overflow:hidden;"
+            sandbox="allow-scripts allow-same-origin">
+          </iframe>
+        </section>
+        <h3>Command</h3>
+        <p class="main__command">
+          Hello Siri, send a message to Michael saying 'Hi there!' and send it at 2 p.m.
+        </p>
       </li>
       <li>
-          <p>
-              Alexa, what day is it?
-          </p>
+        <h3>Code</h3>
+        <section class="main__code">
+          <iframe
+            src="https://carbon.now.sh/embed?bg=rgba(255%2C255%2C255%2C1)&t=dracula&wt=none&l=htmlmixed&ds=true&dsyoff=0px&dsblur=0px&wc=true&wa=false&pv=0px&ph=0px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=%253Cscript%253E%250A%2520%2520const%2520ctrl%2520%253D%2520new%2520anycontrol()%253B%250A%250A%2520%2520ctrl.addCommand(%2522%2524%257BMY_ASSISTANT%257D%2520what%2520%2524%257BOBJECT%257D%2520is%2520it%2522%252C%2520function%2520(ctx)%2520%257B%250A%2520%2520%2520%2520alert(JSON.stringify(ctx%252C%2520null%252C%25202))%250A%2520%2520%257D)%253B%250A%2520%2520%250A%2520%2520ctrl.start()%253B%250A%253C%252Fscript%253E"
+            style="width:1024px; height:250px; border:0; overflow:hidden;"
+            sandbox="allow-scripts allow-same-origin">
+          </iframe>
+        </section>
+        <h3>Command</h3>
+        <p class="main__command">
+          Alexa, what weekday is it?
+        </p>
       </li>
       <li>
-          <p>
-              Alexa, what is 13 times 3?
-          </p>
+        <h3>Code</h3>
+        <section class="main__code">
+          <iframe
+            src="https://carbon.now.sh/embed?bg=rgba(255%2C255%2C255%2C1)&t=dracula&wt=none&l=htmlmixed&ds=true&dsyoff=0px&dsblur=0px&wc=true&wa=false&pv=0px&ph=0px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=%253Cscript%253E%250A%2520%2520const%2520ctrl%2520%253D%2520new%2520anycontrol()%253B%250A%250A%2520%2520function%2520calculateSum%2520(ctx)%2520%257B%250A%2520%2520%2520%2520alert(%2560The%2520result%2520of%2520%2524%257Bctx.VALUE_1%257D%2520times%2520%2524%257Bctx.VALUE_2%257D%2520equals%2520%2524%257Bctx.VALUE_1%2520*%2520ctx.VALUE_2%257D%2560)%250A%2520%2520%257D%250A%250A%2520%2520ctrl.addCommand(%2522%2524%257BMY_ASSISTANT%257D%2520what%2520is%2520%2524%257BVALUE_1%257D%2520x%2520%2524%257BVALUE_2%257D%2522%252C%2520calculateSum)%253B%250A%2520%2520ctrl.addCommand(%2522%2524%257BMY_ASSISTANT%257D%2520what's%2520%2524%257BVALUE_1%257D%2520x%2520%2524%257BVALUE_2%257D%2522%252C%2520calculateSum)%253B%250A%2520%2520%250A%2520%2520ctrl.start()%253B%250A%253C%252Fscript%253E"
+            style="width:1024px; height:300px; border:0; overflow:hidden;"
+            sandbox="allow-scripts allow-same-origin">
+          </iframe>
+        </section>
+        <h3>Command</h3>
+        <p class="main__command">
+          Alexa, what is 13 times 3?
+        </p>
       </li>
       <li>
-          <p>
-              Siri, who is the president of America?
-          </p>
+        <h3>Code</h3>
+        <section class="main__code">
+          <iframe
+            src="https://carbon.now.sh/embed?bg=rgba(255%2C255%2C255%2C1)&t=dracula&wt=none&l=htmlmixed&ds=true&dsyoff=0px&dsblur=0px&wc=true&wa=false&pv=0px&ph=0px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=4x&wm=false&code=%253Cscript%253E%250A%2520%2520const%2520ctrl%2520%253D%2520new%2520anycontrol()%253B%250A%250A%2520%2520function%2520presidentLookup%2520(country)%2520%257B%250A%2520%2520%2520%2520switch%2520(country)%2520%257B%250A%2520%2520%2520%2520%2520%2520case%2520'argentina'%253A%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520'Alberto%2520Fern%25C3%25A1ndez'%250A%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%2520%2520case%2520'angola'%253A%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520'Jo%25C3%25A3o%2520Louren%25C3%25A7o'%250A%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%2520%2520case%2520'brazil'%253A%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520'Jair%2520Bolsonaro'%250A%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%2520%2520case%2520'china'%253A%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520'Xi%2520Jinping'%250A%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%2520%2520case%2520'america'%253A%2520%257B%250A%2520%2520%2520%2520%2520%2520%2520%2520return%2520'Donald%2520Trump'%250A%2520%2520%2520%2520%2520%2520%257D%250A%2520%2520%2520%2520%257D%250A%2520%2520%257D%250A%250A%2520%2520function%2520checkPresidentOfCountry(ctx)%2520%257B%250A%2520%2520%2520%2520const%2520president%2520%253D%2520presidentLookup(ctx.COUNTRY)%253B%250A%2520%2520%2520%2520alert(%2560The%2520president%2520of%2520%2524%257Bctx.COUNTRY%257D%2520is%2520%2524%257Bpresident%257D.%2560)%253B%250A%2520%2520%257D%250A%250A%2520%2520ctrl.addCommand(%2522Who's%2520the%2520president%2520of%2520%2524%257BCOUNTRY%257D%2522%252C%2520checkPresidentOfCountry)%253B%250A%2520%2520ctrl.addCommand(%2522Who%2520is%2520the%2520president%2520of%2520%2524%257BCOUNTRY%257D%2522%252C%2520checkPresidentOfCountry)%253B%250A%2520%2520%250A%2520%2520ctrl.start()%253B%250A%253C%252Fscript%253E"
+            style="width:1024px; height:675px; border:0; overflow:hidden;"
+            sandbox="allow-scripts allow-same-origin">
+          </iframe>
+        </section>
+        <h3>Command</h3>
+        <p class="main__command">
+          Siri, who is the president of Argentina?
+        </p>
       </li>
-      <li>
-          <p>
-              Siri, who is the president of Argentina?
-          </p>
-      </li>
-      <li>
-          <p>
-              Siri, who is the president of China?
-          </p>
-      </li>
-      </ul>
+    </ul>
   </main>
+  <footer id="footer">
+    <a
+      href="https://github.com/KaiWedekind/anycontrol"
+      target="blank"
+      rel="noreferrer">
+      <svg viewBox="0 0 1024 1024" width="25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" transform="scale(64)" fill="#1B1F23"/>
+      </svg>
+    </a>
+
+    <a
+      href="https://raw.githubusercontent.com/KaiWedekind/anycontrol/master/examples/index.html"
+      target="blank"
+      rel="noreferrer">
+      Example
+    </a>
+
+    <a
+      href="https://www.npmjs.com/package/anycontrol"
+      target="blank"
+      rel="noreferrer">
+      <svg viewBox="0 0 3000 3000" width="45" xmlns="http://www.w3.org/2000/svg"><path fill="#231F20" d="M134.211 1766.309h350.212v-532.617H659.54v532.617h175.073v-710.19H134.211v710.19zm1680.92-710.19v710.19h350.257v-532.617h175.079v532.617h175.164v-532.617h174.982v532.617h175.176v-710.19H1815.131zm-490.209 177.572h175.079v355.045h-175.079v-355.045zm-350.213 710.19h350.213v-177.572h350.157v-710.19h-700.37v887.762z"/><path clip-rule="evenodd" fill="none" d="M134.211 1056.119h2731.578v887.762H134.211z"/></svg>
+    </a>
+  </footer>
+  <script src="https://unpkg.com/anycontrol/dist/index.umd.min.js"></script>
+  <script>
+    const ctrl = new anycontrol();
+
+    // ctrl.debug(true);
+
+    ctrl.addCommand("previous page", function() {
+      alert('Switching to previous page');
+    });
+
+    ctrl.addCommand("next page", function () {
+      alert('Switching to next page');
+    });
+
+    ctrl.addCommand("send a message to ${USER} saying ${THIS_TEXT} and send it at ${SPECIFIED_TIME}", function (ctx) {
+      alert(`Sending a message to ${ctx.USER} saying "${ctx.THIS_TEXT}" at ${ctx.SPECIFIED_TIME}`);
+    });
+
+    ctrl.addCommand("${MY_ASSISTANT} what ${OBJECT} is it", function (ctx) {
+      alert(JSON.stringify(ctx, null, 2))
+    });
+
+    /* Variations */
+
+    function calculateSum (ctx) {
+      alert(`The result of ${ctx.VALUE_1} times ${ctx.VALUE_2} equals ${ctx.VALUE_1 * ctx.VALUE_2}`)
+    }
+
+    ctrl.addCommand("${MY_ASSISTANT} what is ${VALUE_1} x ${VALUE_2}", calculateSum);
+    ctrl.addCommand("${MY_ASSISTANT} what's ${VALUE_1} x ${VALUE_2}", calculateSum);
+
+    function presidentLookup (country) {
+      switch (country) {
+        case 'argentina': {
+          return 'Alberto Fernández'
+        }
+        case 'angola': {
+          return 'João Lourenço'
+        }
+        case 'brazil': {
+          return 'Jair Bolsonaro'
+        }
+        case 'china': {
+          return 'Xi Jinping'
+        }
+        case 'america': {
+          return 'Donald Trump'
+        }
+      }
+    }
+
+    function checkPresidentOfCountry(ctx) {
+      const president = presidentLookup(ctx.COUNTRY);
+      alert(`The president of ${ctx.COUNTRY} is ${president}.`);
+    }
+
+    ctrl.addCommand("Who's the president of ${COUNTRY}", checkPresidentOfCountry);
+    ctrl.addCommand("Who is the president of ${COUNTRY}", checkPresidentOfCountry);
+
+    ctrl.start();
+  </script>
 </body>
 </html>

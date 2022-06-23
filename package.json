@@ -41,7 +41,7 @@
     "babel-preset-env": "1.6.0",
     "babel-register": "6.26.0",
     "chai": "4.1.1",
-    "codecov": "2.3.0",
+    "codecov": "3.8.3",
     "commitizen": "^4.0.3",
     "cross-env": "5.0.5",
     "cz-conventional-changelog": "2.0.0",
